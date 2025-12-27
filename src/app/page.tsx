@@ -183,20 +183,46 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+            {[
+              {
+                id: 1,
+                name: "Sarah Johnson",
+                location: "Dhaka, Bangladesh",
+                text: "The caregiver was exceptional. She understood our grandmother's needs perfectly and was so patient. Highly recommended!",
+                image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80"
+              },
+              {
+                id: 2,
+                name: "Rahim Ahmed",
+                location: "Chittagong, Bangladesh",
+                text: "Found a verified attendant for my post-surgery recovery within hours. The service was professional and very reliable.",
+                image: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=150&q=80"
+              },
+              {
+                id: 3,
+                name: "Anika Rahman",
+                location: "Sylhet, Bangladesh",
+                text: "I was worried about leaving my baby, but the babysitter from Care.xyz was amazing. My child loved her!",
+                image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&q=80"
+              }
+            ].map((testimonial) => (
+              <div key={testimonial.id} className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
                 <div className="flex text-yellow-400 mb-4">
                   {[...Array(5)].map((_, i) => <FaStar key={i} size={16} />)}
                 </div>
                 <p className="text-slate-600 mb-6 italic relative z-10">
                   <FaQuoteLeft className="text-blue-100 absolute -top-4 -left-2 text-4xl -z-10" />
-                  "The caregiver was exceptional. She understood our grandmother's needs perfectly and was so patient. Highly recommended!"
+                  "{testimonial.text}"
                 </p>
                 <div className="flex items-center">
-                  <div className="h-10 w-10 rounded-full bg-slate-200 mr-4"></div>
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="h-12 w-12 rounded-full object-cover mr-4 border-2 border-slate-100"
+                  />
                   <div>
-                    <h4 className="font-bold text-slate-900">Sarah Johnson</h4>
-                    <p className="text-sm text-slate-500">Dhaka, Bangladesh</p>
+                    <h4 className="font-bold text-slate-900">{testimonial.name}</h4>
+                    <p className="text-sm text-slate-500">{testimonial.location}</p>
                   </div>
                 </div>
               </div>

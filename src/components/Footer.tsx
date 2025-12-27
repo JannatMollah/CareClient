@@ -59,9 +59,6 @@ const Footer = () => {
 
                 <div className="mt-12 border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
                     <p>&copy; {new Date().getFullYear()} Care.xyz. All rights reserved.</p>
-                    <div className="flex space-x-6 mt-4 md:mt-0">
-                        <span>Made with ❤️ for Families</span>
-                    </div>
                 </div>
             </div>
         </footer>

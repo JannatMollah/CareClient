@@ -88,76 +88,98 @@ export default function MyBookingsPage() {
                 <h1 className="text-3xl font-extrabold text-gray-900 mb-8 border-l-4 border-blue-600 pl-4">My Bookings</h1>
 
                 {bookings.length === 0 ? (
-                    <div className="bg-white rounded-2xl shadow-sm p-12 text-center border border-gray-100">
+                    <div className="bg-white rounded-2xl shadow-sm p-16 text-center border border-gray-100 max-w-2xl mx-auto">
                         <div className="mx-auto h-24 w-24 bg-blue-50 rounded-full flex items-center justify-center mb-6">
-                            <FaReceipt className="text-blue-200 text-4xl" />
+                            <FaReceipt className="text-blue-300 text-4xl" />
                         </div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-2">No Bookings Yet</h3>
-                        <p className="text-gray-500 mb-8">It looks like you haven't booked any services yet.</p>
-                        <Link href="/#services" className="bg-blue-600 text-white px-8 py-3 rounded-full font-medium hover:bg-blue-700 transition shadow-md">
+                        <h3 className="text-2xl font-bold text-gray-900 mb-3">No Bookings Found</h3>
+                        <p className="text-gray-500 mb-8 text-lg">You haven't booked any services yet. Find the perfect care for your loved ones today.</p>
+                        <Link href="/#services" className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                             Browse Services
                         </Link>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="space-y-6">
                         {bookings.map((booking) => (
-                            <div key={booking._id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border border-gray-100">
-                                <div className="p-6">
-                                    <div className="flex items-center justify-between mb-4">
-                                        <h3 className="text-lg font-bold text-gray-900 capitalize truncate">
-                                            {getServiceName(booking.service)}
-                                        </h3>
-                                        <span className={`px-3 py-1 text-xs font-bold rounded-full uppercase tracking-wide ${booking.status === 'Confirmed' ? 'bg-green-100 text-green-700' :
-                                            booking.status === 'Pending' ? 'bg-yellow-100 text-yellow-700' :
-                                                'bg-gray-100 text-gray-600'
-                                            }`}>
-                                            {booking.status}
-                                        </span>
-                                    </div>
+                            <div key={booking._id} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col md:flex-row">
+                                {/* Status Strip */}
+                                <div className={`h-2 md:h-auto md:w-3 ${booking.status === 'Confirmed' ? 'bg-green-500' :
+                                        booking.status === 'Cancelled' ? 'bg-red-500' :
+                                            booking.status === 'Completed' ? 'bg-blue-500' :
+                                                'bg-yellow-400'
+                                    }`}></div>
 
-                                    <div className="space-y-3">
-                                        <div className="flex items-center text-sm text-gray-600">
-                                            <FaClock className="text-blue-400 mr-3 w-4" />
-                                            <span>Duration: <span className="font-semibold text-gray-900">{booking.duration} Hours</span></span>
-                                        </div>
-                                        <div className="flex items-center text-sm text-gray-600">
-                                            <FaMoneyBillWave className="text-green-500 mr-3 w-4" />
-                                            <span>Total: <span className="font-semibold text-green-600">{booking.totalCost} BDT</span></span>
-                                        </div>
-                                        <div className="flex items-center text-sm text-gray-600">
-                                            <FaReceipt className="text-purple-500 mr-3 w-4" />
-                                            <span>Payment:
-                                                <span className={`font-semibold ml-1 ${booking.paymentStatus === 'Paid' ? 'text-green-600' : 'text-yellow-600'}`}>
-                                                    {booking.paymentStatus || 'Pending'}
-                                                </span>
+                                <div className="p-6 md:p-8 flex-grow flex flex-col md:flex-row justify-between gap-6">
+                                    <div className="space-y-4">
+                                        <div className="flex items-center justify-between md:justify-start gap-4">
+                                            <h3 className="text-xl font-bold text-gray-900">
+                                                {getServiceName(booking.service)}
+                                            </h3>
+                                            <span className={`px-3 py-1 text-xs font-bold rounded-full uppercase tracking-wide ${booking.status === 'Confirmed' ? 'bg-green-100 text-green-700' :
+                                                    booking.status === 'Cancelled' ? 'bg-red-100 text-red-700' :
+                                                        booking.status === 'Completed' ? 'bg-blue-100 text-blue-700' :
+                                                            'bg-yellow-100 text-yellow-700'
+                                                }`}>
+                                                {booking.status}
                                             </span>
                                         </div>
-                                        <div className="flex items-center text-sm text-gray-600">
-                                            <FaMapMarkerAlt className="text-red-400 mr-3 w-4" />
-                                            <span className="truncate">{booking.location.city}, {booking.location.area}</span>
+
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-sm text-gray-600">
+                                            <div className="flex items-center">
+                                                <FaClock className="text-blue-400 mr-2 w-4" />
+                                                <span>Duration: <span className="font-semibold text-gray-900">{booking.duration} Hours</span></span>
+                                            </div>
+                                            <div className="flex items-center">
+                                                <FaMoneyBillWave className="text-green-500 mr-2 w-4" />
+                                                <span>Total: <span className="font-bold text-gray-900">{booking.totalCost} BDT</span></span>
+                                            </div>
+                                            <div className="flex items-center">
+                                                <FaCalendarAlt className="text-purple-400 mr-2 w-4" />
+                                                <span>Date: <span className="font-semibold text-gray-900">{formatDate(booking.createdAt || new Date().toISOString())}</span></span>
+                                            </div>
+                                            <div className="flex items-center">
+                                                <FaReceipt className="text-orange-400 mr-2 w-4" />
+                                                <span>Payment:
+                                                    <span className={`font-semibold ml-1 ${booking.paymentStatus === 'Paid' ? 'text-green-600' : 'text-yellow-600'}`}>
+                                                        {booking.paymentStatus || 'Pending'}
+                                                    </span>
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div className="flex items-center text-sm text-gray-400 mt-2 border-t pt-2">
-                                            <span className="text-xs">Booked on {formatDate(booking.createdAt || new Date().toISOString())}</span>
+
+                                        <div className="flex items-start">
+                                            <FaMapMarkerAlt className="text-red-400 mr-2 w-4 mt-1 flex-shrink-0" />
+                                            <span className="text-gray-600 text-sm">
+                                                {booking.location.address ? `${booking.location.address}, ` : ''}{booking.location.area}, {booking.location.city}
+                                            </span>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="bg-gray-50 px-6 py-3 border-t border-gray-100 flex justify-between items-center">
-                                    {booking.status !== 'Cancelled' && (
-                                        <button
-                                            onClick={() => handleCancel(booking._id)}
-                                            className="text-sm text-red-500 font-medium hover:text-red-700 transition"
-                                        >
-                                            Cancel
-                                        </button>
-                                    )}
-                                    {booking.paymentStatus !== 'Paid' && booking.status !== 'Cancelled' && (
-                                        <Link
-                                            href={`/payment/${booking._id}`}
-                                            className="text-sm bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition"
-                                        >
-                                            Pay Now
-                                        </Link>
-                                    )}
+
+                                    <div className="flex flex-row md:flex-col justify-end gap-3 border-t md:border-t-0 md:border-l border-gray-100 pt-4 md:pt-0 md:pl-6 min-w-[140px]">
+                                        {booking.paymentStatus !== 'Paid' && booking.status !== 'Cancelled' && (
+                                            <Link
+                                                href={`/payment/${booking._id}`}
+                                                className="flex-1 md:flex-none text-center bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition shadow-md hover:shadow-lg"
+                                            >
+                                                Pay Now
+                                            </Link>
+                                        )}
+
+                                        {booking.status !== 'Cancelled' && (
+                                            <button
+                                                onClick={() => handleCancel(booking._id)}
+                                                className="flex-1 md:flex-none px-6 py-2 rounded-lg font-medium text-red-600 bg-red-50 hover:bg-red-100 transition border border-red-100"
+                                            >
+                                                Cancel
+                                            </button>
+                                        )}
+
+                                        {booking.status === 'Cancelled' && (
+                                            <span className="text-center text-gray-400 font-medium py-2 bg-gray-50 rounded-lg cursor-not-allowed">
+                                                Cancelled
+                                            </span>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         ))}
