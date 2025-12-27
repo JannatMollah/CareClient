@@ -16,8 +16,8 @@ interface User {
 
 interface AuthContextType {
     user: User | null;
-    login: (userData: any) => void;
-    register: (userData: any) => void;
+    login: (userData: any) => Promise<void>;
+    register: (userData: any) => Promise<void>;
     logout: () => void;
     loading: boolean;
 }
