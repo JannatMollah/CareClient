@@ -33,110 +33,60 @@ export default function RegisterPage() {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-[calc(100vh-64px)] bg-gray-100 py-12">
-            <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-lg">
-                <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Create an Account</h2>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-                            Full Name
-                        </label>
-                        <input
-                            type="text"
-                            id="name"
-                            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Enter your name"
-                            value={name}
-                            onChange={onChange}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-                            Email Address
-                        </label>
-                        <input
-                            type="email"
-                            id="email"
-                            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Enter your email"
-                            value={email}
-                            onChange={onChange}
-                            required
-                        />
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                        <div>
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="contact">
-                                Contact No
-                            </label>
-                            <input
-                                type="text"
-                                id="contact"
-                                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                placeholder="Phone number"
-                                value={contact}
-                                onChange={onChange}
-                                required
-                            />
+        <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+            {/* Background Decoration */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+                <div className="absolute -bottom-[20%] -left-[10%] w-[50%] h-[50%] bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob"></div>
+                <div className="absolute top-[10%] -right-[10%] w-[50%] h-[50%] bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
+            </div>
+
+            <div className="max-w-xl w-full space-y-8 relative z-10 bg-white p-10 rounded-2xl shadow-xl">
+                <div className="text-center">
+                    <h2 className="text-3xl font-extrabold text-gray-900 mb-2">Create Account</h2>
+                    <p className="text-sm text-gray-600">Join our community today</p>
+                </div>
+                <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+                    <div className="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-2">
+                        <div className="sm:col-span-2">
+                            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                            <input id="name" type="text" required className="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="John Doe" value={name} onChange={onChange} />
+                        </div>
+                        <div className="sm:col-span-2">
+                            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input id="email" type="email" required className="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="you@example.com" value={email} onChange={onChange} />
                         </div>
                         <div>
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nid">
-                                NID No
-                            </label>
-                            <input
-                                type="text"
-                                id="nid"
-                                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                placeholder="National ID"
-                                value={nid}
-                                onChange={onChange}
-                                required
-                            />
+                            <label htmlFor="contact" className="block text-sm font-medium text-gray-700 mb-1">Contact No</label>
+                            <input id="contact" type="text" required className="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="017..." value={contact} onChange={onChange} />
+                        </div>
+                        <div>
+                            <label htmlFor="nid" className="block text-sm font-medium text-gray-700 mb-1">NID Number</label>
+                            <input id="nid" type="text" required className="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="NID..." value={nid} onChange={onChange} />
+                        </div>
+                        <div>
+                            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                            <input id="password" type="password" required className="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="••••••••" value={password} onChange={onChange} />
+                        </div>
+                        <div>
+                            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+                            <input id="confirmPassword" type="password" required className="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="••••••••" value={confirmPassword} onChange={onChange} />
                         </div>
                     </div>
 
                     <div>
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-                            Password
-                        </label>
-                        <input
-                            type="password"
-                            id="password"
-                            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Create password"
-                            value={password}
-                            onChange={onChange}
-                            required
-                        />
-                        <p className="text-xs text-gray-500 mt-1">Must be 6+ chars, 1 uppercase, 1 lowercase.</p>
+                        <button
+                            type="submit"
+                            className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                        >
+                            Create Account
+                        </button>
                     </div>
-                    <div>
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="confirmPassword">
-                            Confirm Password
-                        </label>
-                        <input
-                            type="password"
-                            id="confirmPassword"
-                            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Confirm password"
-                            value={confirmPassword}
-                            onChange={onChange}
-                            required
-                        />
-                    </div>
-                    <button
-                        type="submit"
-                        className="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 transition"
-                    >
-                        Register
-                    </button>
                 </form>
-                <div className="mt-4 text-center">
-                    <p className="text-gray-600">
+                <div className="mt-6 text-center">
+                    <p className="text-sm text-gray-600">
                         Already have an account?{' '}
-                        <Link href="/login" className="text-blue-600 hover:underline">
-                            Login here
+                        <Link href="/login" className="font-medium text-blue-600 hover:text-blue-500 hover:underline">
+                            Sign in
                         </Link>
                     </p>
                 </div>
